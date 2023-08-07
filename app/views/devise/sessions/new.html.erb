@@ -1,0 +1,26 @@
+<div class="main_container col-6">
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="header_element d-flex justify-content-between align-items-center  p-2 mb-4">
+<%= link_to root_path  do %>
+  <i class="bi bi-arrow-left text-white h3"></i>
+<% end %>
+
+<h2>Log in</h2>
+  <div class="actions">
+    <%= f.submit "Log in" ,class: "next_el"%>
+  </div>
+</div>
+  <div class="form-group">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg", placeholder: "Email" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-lg", placeholder: "Password" %>
+  </div>
+  <div class="forget_link">
+    <%= link_to "Forgot Password?", new_user_password_path %>
+  </div>
+<% end %>
+</div>
+
