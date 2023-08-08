@@ -1,8 +1,9 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
+
   def show
-    @groups = Groups.find(params[:id])
-    authorize! :read, @groups
+    @group = Group.find(params[:id])
+    @depenses = @group.depenses # Make sure this line is present
   end
 
   def index
@@ -10,16 +11,7 @@ class GroupsController < ApplicationController
   end
 
   def new
-    @group = current_user.groups.build
-  end
-
-  def create
-    @group = current_user.groups.build(group_params)
-    if @group.save
-      redirect_to groups_path
-    else
-      render :new
-    end
+    @group = Group.new
   end
 
   def authenticate_user!
@@ -28,9 +20,22 @@ class GroupsController < ApplicationController
     redirect_to new_user_session_path
   end
 
+  def create
+    @group = current_user.groups.new(group_params)
+    if @group.save
+      redirect_to group_path(@group), notice: 'Group was successfully created.'
+    else
+      render :new
+    end
+  end
+
   private
 
+  def set_group
+    @group = Group.find(params[:group_id])
+  end
+
   def group_params
-    params.require(:group).permit(:name, :icon)
+    params.permit(:name, :icon)
   end
 end
