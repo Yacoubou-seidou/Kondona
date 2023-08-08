@@ -1,0 +1,87 @@
+
+
+
+<div class="main_container col-6">
+<div class="header_element d-flex justify-content-between align-items-center  p-2 mb-4">
+<%= link_to root_path  do %>
+  <i class="bi bi-arrow-left text-white h3"></i>
+<% end %>
+
+<h2>DETAILS</h2>
+  <div class="actions text-center mt-3">
+    <i class="bi bi-search h3"></i>
+<%= form_tag destroy_user_session_path, method: :delete, class: "d-inline" do %>
+  <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+<% end %>
+
+
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+        <div class="d-flex  align-items-center">
+          <img src="<%= @group.icon %>" alt="Group Icon" class="bi-image p-2" style="max-width: 100px;">
+          <h5 class="card-title p-2"><%= @group.name %></h5>
+        </div>
+
+          <h6 class="card-subtitle mb-2 text-muted p-2">Depenses:</h6>
+          <% if @depenses.any? %>
+            <ul>
+              <% @depenses.each do |depense| %>
+                <li class="depenseList p-3">
+                <p class='grisColor'><%= depense.name %> - <%= depense.amount %>$</p>
+                <% formatted_depense_date = depense.created_at.strftime("%e, %B %Y at %I:%M%P") %>
+                  <div>
+                  <i class="bi bi-calendar h3"></i>
+                  <span class="smallSpan grisColor"><%= formatted_depense_date %></span>
+                  </div>
+                  </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p>No expenses for this group.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if user_signed_in? %>
+  <div class="container addBtn actions text-center mt-3 fixed-bottom bg-success mx-auto py-3 col-5">
+<button type="button" class="btn col-11 bg-success text-white  border-white mt-3" data-bs-toggle="modal" data-bs-target="#newExpenseModal">
+  Add Expense
+</button>
+  </div>
+
+<% end %>
+<div class="modal fade" id="newExpenseModal" tabindex="-1" aria-labelledby="newExpenseModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <%= form_with(model: @depense, url: group_depenses_path(@group), method: :post, local: true) do |form| %>
+        <div class="modal-header">
+          <h5 class="modal-title" id="newExpenseModalLabel">Add Expense to <%= @group.name %></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <%= form.label :name, class: "form-label" %>
+            <%= form.text_field :name, class: "form-control" %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :amount, class: "form-label" %>
+            <%= form.text_field :amount, class: "form-control" %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= form.submit "Add Depense", class: "btn btn-primary" %>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

@@ -13,6 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+  box-sizing: border-box;
+}
+
+
+
 body {
   color: #434b54;
   font-family: 'proxima-nova', sans-serif;
@@ -51,6 +58,14 @@ body {
   color: #a9adae;
 }
 
+.blackColor {
+  color: #434b54;
+}
+
+.smallSpan {
+  font-size: 10px;
+}
+
 .next_el {
   background-color: transparent;
   border: 0;
@@ -74,4 +89,18 @@ body {
 .forget_link a {
   text-decoration: none;
   color: #ced4da;
+}
+
+.addBtn {
+  max-width: 558px;
+}
+
+.removedecoration a {
+  text-decoration: none;
+}
+
+.depenseList {
+  border-top: 1px solid #a9adae;
+  border-bottom: 1px solid #a9adae;
+  list-style-type: none;
 }
