@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: kondona_production
-  username: kondona
-  password: <%= ENV["KONDONA_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
