@@ -11,11 +11,9 @@ class DepensesController < ApplicationController
     @depense.user = current_user
     @group_depense = GroupDepense.new(group: @group, depense: @depense)
     if @group_depense.save
-      puts 'Depense saved successfully!'
-      redirect_to group_path(@group), notice: 'Expense was successfully added.'
+      redirect_to group_path(@group), notice: 'Depense was successfully added.'
     else
-      puts 'Error saving depense:', @depense.errors.full_messages.join(', ')
-      redirect_to group_path(@group)
+      render :new
     end
   end
 
@@ -26,6 +24,6 @@ class DepensesController < ApplicationController
   end
 
   def depense_params
-    params.permit(:name, :amount)
+    params.require(:depense).permit(:name, :amount)
   end
 end

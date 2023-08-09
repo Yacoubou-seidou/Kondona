@@ -1,20 +1,12 @@
-
-
-
 <div class="main_container col-6">
 <div class="header_element d-flex justify-content-between align-items-center  p-2 mb-4">
 <%= link_to root_path  do %>
   <i class="bi bi-arrow-left text-white h3"></i>
 <% end %>
-
-<h2>DETAILS</h2>
+<% total_depenses = @group.depenses.sum(:amount) %>
+<h3>TOTAL: $<%= total_depenses > 0 ? total_depenses : 0 %></h3>
   <div class="actions text-center mt-3">
     <i class="bi bi-search h3"></i>
-<%= form_tag destroy_user_session_path, method: :delete, class: "d-inline" do %>
-  <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
-<% end %>
-
-
   </div>
 </div>
 <div class="container">
@@ -49,39 +41,13 @@
     </div>
   </div>
 </div>
-
-<% if user_signed_in? %>
-  <div class="container addBtn actions text-center mt-3 fixed-bottom bg-success mx-auto py-3 col-5">
-<button type="button" class="btn col-11 bg-success text-white  border-white mt-3" data-bs-toggle="modal" data-bs-target="#newExpenseModal">
-  Add Expense
-</button>
-  </div>
-
-<% end %>
-<div class="modal fade" id="newExpenseModal" tabindex="-1" aria-labelledby="newExpenseModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <%= form_with(model: @depense, url: group_depenses_path(@group), method: :post, local: true) do |form| %>
-        <div class="modal-header">
-          <h5 class="modal-title" id="newExpenseModalLabel">Add Expense to <%= @group.name %></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <%= form.label :name, class: "form-label" %>
-            <%= form.text_field :name, class: "form-control" %>
-          </div>
-          <div class="mb-3">
-            <%= form.label :amount, class: "form-label" %>
-            <%= form.text_field :amount, class: "form-control" %>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <%= form.submit "Add Depense", class: "btn btn-primary" %>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        </div>
-      <% end %>
+  <% if user_signed_in? %>
+    <div class="container addBtn actions text-center mt-3 fixed-bottom  mx-auto py-3 col-5">
+        <%= link_to new_group_depense_url(@group)  do %>
+      <button type="button" class="btn col-11   border-white text-white" >
+        Add Expense
+      </button>
+    <% end %>
     </div>
-  </div>
-</div>
+  <% end %>
 </div>

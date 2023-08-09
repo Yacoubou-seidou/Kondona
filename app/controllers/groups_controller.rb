@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @depenses = @group.depenses # Make sure this line is present
+    @depenses = @group.depenses.order(created_at: :desc)
   end
 
   def index
@@ -23,7 +23,7 @@ class GroupsController < ApplicationController
   def create
     @group = current_user.groups.new(group_params)
     if @group.save
-      redirect_to group_path(@group), notice: 'Group was successfully created.'
+      redirect_to root_path, notice: 'Group was successfully created.'
     else
       render :new
     end
@@ -36,6 +36,6 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.permit(:name, :icon)
+    params.require(:group).permit(:name, :icon)
   end
 end

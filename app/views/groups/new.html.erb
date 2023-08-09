@@ -1,0 +1,24 @@
+<div class="main_container col-6">
+<div class="header_element d-flex justify-content-between align-items-center  p-2 mb-4">
+<%= link_to root_path  do %>
+  <i class="bi bi-arrow-left text-white h3"></i>
+<% end %>
+<h2>New Group</h2>
+  <div class="actions text-center mt-3">
+    <i class="bi bi-search h3"></i>
+  </div>
+</div>
+<%= form_with model: @group, url: groups_path, method: :post do |form| %>
+    <div class="form-group">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :icon, class: "form-label" %>
+      <%= form.text_field :icon, class: "form-control" %>
+    </div>
+    <div class="actions text-center mt-3">
+        <%= form.submit "Create Group", class: "btn btn-primary " %>
+    </div>
+<% end %>
+</div>

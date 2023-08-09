@@ -1,0 +1,25 @@
+<div class="main_container col-6">
+<div class="header_element d-flex justify-content-between align-items-center  p-2 mb-4">
+<%= link_to group_path(@group)  do %>
+  <i class="bi bi-arrow-left text-white h3"></i>
+<% end %>
+
+<h4>Add Expense to <%= @group.name %></h4>
+  <div class="actions text-center mt-3">
+    <i class="bi bi-search h3"></i>
+  </div>
+</div>
+<%= form_with(model: @depense, url: group_depenses_path(@group), method: :post, local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :amount, class: "form-label" %>
+      <%= form.text_field :amount, class: "form-control", type: :number %>
+    </div>
+    <div class="actions text-center mt-3">
+        <%= form.submit "Add Depense", class: "btn btn-primary" %>
+    </div>
+<% end %>
+</div>

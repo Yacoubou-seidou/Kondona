@@ -1,14 +1,29 @@
 <div class="main_container col-6">
   <div class="header_element d-flex justify-content-between align-items-center  p-2 mb-4">
-    <%= link_to root_path  do %>
+    <button type="button" class="btn " data-bs-toggle="offcanvas" data-bs-target="#menu" aria-controls="menu">
       <i class="bi bi-list h3 text-white"></i>
-    <% end %>
-    <h2>Depenses</h2>
+    </button>
+    <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="menu" aria-labelledby="menuLabel">
+    <div class="col-12 d-flex justify-content-end"align-items-center">
+      <button type="button" class=" m-2 btn-close text-reset bg-white  data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+      <div class="offcanvas-header">
+          <div class="col-12 d-flex justify-content-center align-items-center">
+            <img src="<%= current_user.image %>" alt="Group Icon" class="bi-image" style="max-width: 100px;">
+          </div>
+      </div>
+      <div class="offcanvas-body">
     <div class="actions text-center mt-3">
       <%= form_tag destroy_user_session_path, method: :delete, class: "d-inline" do %>
         <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
       <% end %>
     </div>
+      </div>
+    </div>
+    <h2>Depenses</h2>
+      <div class="actions text-center mt-3">
+    <i class="bi bi-search h3"></i>
+  </div>
   </div>
   <div class="container">
     <div class="container justify-content-center removedecoration">
@@ -44,38 +59,12 @@
   </div>
 
   <% if user_signed_in? %>
-    <div class="container addBtn actions text-center mt-3 fixed-bottom bg-success mx-auto py-3 col-5">
-      <button type="button" class="btn btn-success col-11 bg-success  border-white" data-bs-toggle="modal" data-bs-target="#newGroupModal">
+    <div class="container addBtn actions text-center mt-3 fixed-bottom mx-auto py-3 col-5">
+        <%= link_to new_group_url  do %>
+      <button type="button" class="btn col-11 text-white  border-white" >
         Create New Group
       </button>
+    <% end %>
     </div>
   <% end %>
-
-
-  <div class="modal fade" id="newGroupModal" tabindex="-1" aria-labelledby="newGroupModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <%= form_with model: @group, url: groups_path, method: :post do |form| %>
-          <div class="modal-header">
-            <h5 class="modal-title" id="newGroupModalLabel">Create New Group</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="mb-3">
-              <%= form.label :name, class: "form-label" %>
-              <%= form.text_field :name, class: "form-control" %>
-            </div>
-            <div class="mb-3">
-              <%= form.label :icon, class: "form-label" %>
-              <%= form.text_field :icon, class: "form-control" %>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <%= form.submit "Create Group", class: "btn btn-primary" %>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
 </div>
