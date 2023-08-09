@@ -13,6 +13,9 @@
   - [Setup](#setup)
   - [Install](#install)
   - [Usage](#usage)
+  - [Run tests](#run-tests)
+  - [Deployment](#triangular_flag_on_post-deployment)
+- [🎥 Video-Presentation](#video)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -24,7 +27,7 @@
 
 ## Kondona application <a name="about-project"></a>
 
-Kondona is a mobile web application where you can manage your budget, you have a list of transactions associated with a category, so that you can see how much money you spent and on what.
+Kondona is a mobile web application where you can manage your budget, you have a list of Depenses associated with a Group, so that you can see how much money you spent and on what.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -90,6 +93,25 @@ Start the server by running the following command:
 rails server
 ```
 
+### Run tests
+
+To run tests, run the following command:
+
+```sh
+  rspec --force-color --format documentation
+```
+
+### Deployment
+
+[Deployment_link]()
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+##  Video-Presentation <a id="video"></a>
+
+You can view a video presentation of this app [here](https://drive.google.com/file/d/1UhhlcjtkhJfvGWW3t1Q0h4laePp4yZrM/view?usp=sharing)
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 👥 Authors <a name="authors"></a>
@@ -125,7 +147,8 @@ If you like this project, give it a ⭐.
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank Microverse for giving me this wonderful opportunity to work on this project.
+I would like to thank Microverse for giving me this wonderful opportunity to work on this project
+and [Gregoire Vella on Behance](https://www.behance.net/gregoirevella) for the original design.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 📝 License <a name="license"></a>
