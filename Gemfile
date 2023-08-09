@@ -2,13 +2,13 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.4'
-gem 'cancancan'
-gem 'rubocop', '>= 1.0', '< 2.0'
 gem 'bootstrap'
+gem 'cancancan'
 gem 'devise'
 gem 'factory_bot_rails'
-gem 'rails', '~> 7.0.6'
 gem 'faker'
+gem 'rails', '~> 7.0.6'
+gem 'rubocop', '>= 1.0', '< 2.0'
 gem 'sprockets-rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
